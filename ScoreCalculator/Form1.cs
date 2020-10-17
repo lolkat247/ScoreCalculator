@@ -15,14 +15,14 @@ namespace ScoreCalculator
         // declare global vars
         // NOTE: I used doubles since realistically, scores will be decimal
         int countScore;
-        double[] scores;
+        List<double> scores;
         
         public Form1()
         {
             // init global vars
             InitializeComponent();
             countScore = 0;
-            scores = new double[20];
+            scores = new List<double>();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -42,11 +42,12 @@ namespace ScoreCalculator
             // Add to total
             try
             {
-                scores[countScore++] = curScore; //increment count for next input
+                scores.Add(curScore);
+                countScore++; //increment count for next input
             }
             catch (IndexOutOfRangeException)
             {
-                MessageBox.Show("Max of 20 entries", "Error");
+                MessageBox.Show("Max of amount of entries entries", "Error");
                 return;
             }
 
@@ -69,7 +70,7 @@ namespace ScoreCalculator
         private void btnClearScores_Click(object sender, EventArgs e)
         {
             // reset scores
-            scores = new double[20];
+            scores = new List<double>();
             countScore = 0;
 
             // display changes
