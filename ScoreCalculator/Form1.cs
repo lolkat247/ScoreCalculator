@@ -12,17 +12,17 @@ namespace ScoreCalculator
 {
     public partial class Form1 : Form
     {
-        // I used doubles since input would probably be percentages
-        double totalScore;
+        // declare global vars
+        // NOTE: I used doubles since realistically, scores will be decimal
         int countScore;
-        double averageScore;
+        double[] scores;
         
         public Form1()
         {
+            // init global vars
             InitializeComponent();
-            totalScore = 0.0;
             countScore = 0;
-            averageScore = 0.0;
+            scores = new double[20];
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -39,10 +39,24 @@ namespace ScoreCalculator
                 return;
             }
 
-            // Add to totals
-            totalScore += curScore;
-            countScore++;
-            averageScore = totalScore / countScore;
+            // Add to total
+            try
+            {
+                scores[countScore++] = curScore; //increment count for next input
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show("Max of 20 entries", "Error");
+                return;
+            }
+
+            // calc avg
+            double totalScore = 0.0;
+            foreach (var x in scores) 
+            {
+                totalScore += x;
+            }
+            double averageScore = totalScore / countScore;
 
             // update text boxes
             tbScoreTotal.Text = Convert.ToString(totalScore);
@@ -55,19 +69,34 @@ namespace ScoreCalculator
         private void btnClearScores_Click(object sender, EventArgs e)
         {
             // reset scores
-            totalScore = 0.0;
+            scores = new double[20];
             countScore = 0;
-            averageScore = 0.0;
 
             // display changes
-            tbScoreTotal.Text = Convert.ToString(totalScore);
+            tbScoreTotal.Text = Convert.ToString("");
             tbScoreCount.Text = Convert.ToString(countScore);
-            tbAverage.Text = Convert.ToString(averageScore);
+            tbAverage.Text = Convert.ToString("");
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnDspSco_Click(object sender, EventArgs e)
+        {
+            var mout = "";
+            var outscores = new double[countScore];
+            for (int x = 0; x < countScore; x++)
+            {
+                outscores[x] = scores[x];
+            }
+            Array.Sort(outscores);
+            foreach (var x in outscores)
+            {
+                mout = mout + Convert.ToString(x) + "\n";
+            }
+            MessageBox.Show(mout, "Sorted Scores");
         }
     }
 }

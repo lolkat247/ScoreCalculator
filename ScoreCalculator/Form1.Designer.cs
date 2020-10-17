@@ -39,6 +39,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnClearScores = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnDspSco = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -127,23 +128,34 @@
             // 
             // btnClearScores
             // 
-            this.btnClearScores.Location = new System.Drawing.Point(59, 101);
+            this.btnClearScores.Location = new System.Drawing.Point(140, 101);
             this.btnClearScores.Name = "btnClearScores";
             this.btnClearScores.Size = new System.Drawing.Size(75, 23);
-            this.btnClearScores.TabIndex = 2;
+            this.btnClearScores.TabIndex = 3;
             this.btnClearScores.Text = "Clear Scores";
             this.btnClearScores.UseVisualStyleBackColor = true;
             this.btnClearScores.Click += new System.EventHandler(this.btnClearScores_Click);
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(140, 101);
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.Location = new System.Drawing.Point(140, 130);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 3;
+            this.btnExit.TabIndex = 4;
             this.btnExit.Text = "E&xit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnDspSco
+            // 
+            this.btnDspSco.Location = new System.Drawing.Point(12, 101);
+            this.btnDspSco.Name = "btnDspSco";
+            this.btnDspSco.Size = new System.Drawing.Size(122, 23);
+            this.btnDspSco.TabIndex = 2;
+            this.btnDspSco.Text = "Display Scores";
+            this.btnDspSco.UseVisualStyleBackColor = true;
+            this.btnDspSco.Click += new System.EventHandler(this.btnDspSco_Click);
             // 
             // Form1
             // 
@@ -151,7 +163,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(222, 130);
+            this.ClientSize = new System.Drawing.Size(222, 160);
+            this.Controls.Add(this.btnDspSco);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnClearScores);
             this.Controls.Add(this.btnAdd);
@@ -183,6 +196,7 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnClearScores;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnDspSco;
     }
 }
 
